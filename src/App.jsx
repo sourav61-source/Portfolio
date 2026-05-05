@@ -238,8 +238,8 @@ const Badge = ({ children, variant = "default", className = "" }) => {
   return <div className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[8px] md:text-[9px] ${variants[variant] || ""} ${className}`}>{children}</div>;
 };
 
-const Card = ({ children, className = "" }) => (
-  <div className={`rounded-xl border border-zinc-900 bg-[#080808] text-zinc-50 transition-all duration-300 hover:border-zinc-700 ${className}`}>
+const Card = ({ children, className = "", onClick }) => (
+  <div className={`rounded-xl border border-zinc-900 bg-[#080808] text-zinc-50 transition-all duration-300 hover:border-zinc-700 ${className}`} onClick={onClick}>
     {children}
   </div>
 );
@@ -341,7 +341,7 @@ export default function App() {
               };
               return (
               <Reveal key={work.id} delay={index * 100}>
-                <Card className={`group cursor-pointer overflow-hidden border-zinc-900 bg-[#0a0a0a] ${accent[work.neonAccent] || accent.cyan}`} onClick={() => setActiveWork(work)}>
+                <Card className={`group cursor-pointer overflow-hidden border-zinc-900 bg-[#0a0a0a] ${accent[work.neonAccent] || accent.cyan}`} onClick={() => { console.log('Clicked work:', work.title); setActiveWork(work); }}>
                   <div className="aspect-[16/10] bg-zinc-950 border-b border-zinc-900 p-0 relative overflow-hidden">
                      <div className="absolute top-0 left-0 w-[200%] h-[200%] origin-top-left scale-[0.5] pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700">
                         <MockupRenderer id={work.mockupId} />
@@ -446,10 +446,24 @@ export default function App() {
             
             <div className="p-6 md:p-12 w-full relative">
               <div className="mb-8 border-b border-zinc-900 pb-6">
-                <p className={`text-${activeWork.neonAccent}-400 text-[8px] font-bold uppercase tracking-[0.3em] mb-2`}>{activeWork.category}</p>
+                <p className={`${
+                  {
+                    cyan: 'text-cyan-400',
+                    blue: 'text-blue-400',
+                    emerald: 'text-emerald-400',
+                    fuchsia: 'text-fuchsia-400'
+                  }[activeWork.neonAccent] || 'text-cyan-400'
+                } text-[8px] font-bold uppercase tracking-[0.3em] mb-2`}>{activeWork.category}</p>
                 <h3 className="text-2xl md:text-4xl font-black text-white tracking-tight mb-4 uppercase">{activeWork.title}</h3>
                 <div className={`inline-flex items-center gap-4`}>
-                   <div className={`px-4 py-1 rounded-full bg-${activeWork.neonAccent}-500/10 border border-${activeWork.neonAccent}-500/30 font-mono text-xs text-${activeWork.neonAccent}-400 font-bold tracking-tight uppercase`}>
+                   <div className={`px-4 py-1 rounded-full ${
+                     {
+                       cyan: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400',
+                       blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
+                       emerald: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
+                       fuchsia: 'bg-fuchsia-500/10 border-fuchsia-500/30 text-fuchsia-400'
+                     }[activeWork.neonAccent] || 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
+                   } font-mono text-xs font-bold tracking-tight uppercase`}>
                      {activeWork.stats}
                    </div>
                 </div>
