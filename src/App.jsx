@@ -503,7 +503,7 @@ export default function App() {
         </section>
 
         {/* EXPERIENCE */}
-        <section id="experience" className="py-20 border-t border-zinc-800/50">
+        <section id="experience" className="py-20 border-t border-zinc-800/50 scroll-mt-16">
           <Reveal>
             <h2 className="text-3xl font-bold mb-12">Professional Experience</h2>
             <div className="flex flex-col gap-4">
@@ -524,7 +524,7 @@ export default function App() {
         </section>
 
         {/* CAPABILITIES */}
-        <section id="capabilities" className="py-20 border-t border-zinc-800/50">
+        <section id="capabilities" className="py-20 border-t border-zinc-800/50 scroll-mt-16">
           <Reveal>
             <h2 className="text-3xl font-bold mb-12">Toolkit & Capabilities</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -546,7 +546,7 @@ export default function App() {
         </section>
 
         {/* WORKS */}
-        <section id="works" className="py-20 border-t border-zinc-800/50">
+        <section id="works" className="py-20 border-t border-zinc-800/50 scroll-mt-16">
           <Reveal>
             <h2 className="text-3xl font-bold mb-4">Case Studies</h2>
             <p className="text-zinc-500 mb-12">Measurable outcomes from data-driven campaigns.</p>
