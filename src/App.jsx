@@ -1,12 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ArrowRight, ExternalLink, ChevronRight, Star, X, BarChart3, Target, Zap, LayoutDashboard, Menu, Sparkles, Database, Globe, Layers, Search, TrendingUp, MousePointer2 } from 'lucide-react';
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  ArrowRight, 
+  ExternalLink, 
+  ChevronRight, 
+  Star, 
+  X, 
+  BarChart3, 
+  Target, 
+  Zap, 
+  LayoutDashboard, 
+  Menu, 
+  Sparkles,
+  Award,
+  Globe,
+  TrendingUp,
+  Search
+} from 'lucide-react';
 
-// --- DATA CONFIGURATION ---
+// --- IMAGE ASSETS ---
+const imgGsc1 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+const imgSerp = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+const imgMeta1 = "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+const imgMeta2 = "https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+const imgGad1 = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&grayscale=true";
+const imgGad2 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&grayscale=true";
+const imgGad3 = "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&grayscale=true";
+const imgGad5 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&grayscale=true";
+
+// --- DATA ---
 const PERSONAL_DETAILS = {
   name: "SOURAV KR",
-  role: "Digital Marketing Specialist | SEO • AEO • GEO Analyst",
-  tagline: "I help businesses grow their traffic and leads through search and paid advertising. I focus on technical SEO and the shift towards AI-powered search (AEO/GEO) to keep brands visible.",
+  role: "Digital Marketing Specialist | SEO / AEO / GEO Analyst",
+  tagline: "Results-driven Digital Marketing Specialist with 3+ years of experience across B2B and B2C industries. Proven track record of delivering measurable growth in organic traffic and lead generation.",
   email: "sourus61@gmail.com",
+  github: "#", 
   linkedin: "https://linkedin.com/in/sourav-rajeevan/"
 };
 
@@ -16,50 +46,40 @@ const EXPERIENCES = [
     role: "SEO Analyst",
     company: "2Base Technologies",
     period: "Sept 2024 - Apr 2026",
-    description: "I manage the overall SEO and GEO strategy here. I've led projects that resulted in a 44% year-over-year increase in organic traffic through technical audits and intent-based content planning."
+    description: "Led the SEO, AEO, and GEO strategy, delivering 44% YoY organic traffic growth. Managed technical SEO assessments, content audits, and cross-functional campaigns."
   },
   {
     id: 2,
     role: "Digital Marketing Specialist",
     company: "Ad House Advertising",
     period: "Jul 2024 - Aug 2024",
-    description: "Handled Meta and Google Ads campaigns. My focus was on creative testing and audience targeting, which helped increase our overall reach by 17%."
+    description: "Managed SEO, PPC, and Meta Ads campaigns. Achieved a 17% increase in social media reach through platform-specific content."
   },
   {
     id: 3,
     role: "Senior Digital Marketing Exec.",
     company: "Conscience Business Solutions",
     period: "Sep 2023 - Jul 2024",
-    description: "Worked on ranking high-competition commercial keywords. I also built the company's WordPress website with a focus on technical SEO and fast performance."
+    description: "Ranked company website in the top 10 for targeted commercial keywords. Designed and developed the company WordPress website with built-in SEO architecture."
   },
   {
     id: 4,
     role: "Freelance SEO Consultant",
     company: "Docsmart",
     period: "Sep 2022 - Sep 2023",
-    description: "Performed technical SEO audits and on-page optimization. Managed ROI-driven Meta Ads for local healthcare leads."
-  },
-  {
-    id: 5,
-    role: "Digital Marketing Executive",
-    company: "Capace Software Private Limited",
-    period: "Mar 2022 - Sep 2022",
-    description: "Managed SEO and email marketing for software products. I set up automated email sequences to nurture leads and improve conversion rates."
-  },
-  {
-    id: 6,
-    role: "Digital Mktg & Affiliate Exec.",
-    company: "Snap Hub",
-    period: "Dec 2021 - Mar 2022",
-    description: "Built marketing funnels and managed ads for affiliate websites. I also handled WordPress SEO for multiple affiliate blogs."
-  },
-  {
-    id: 7,
-    role: "Digital Marketing Intern",
-    company: "Sadupsoft",
-    period: "Sep 2021 - Dec 2021",
-    description: "Started with off-page link building, keyword research, and meta tag optimization. Supported the social media team with daily reporting."
+    description: "Delivered SEO strategy, technical audits, and on-page optimization. Managed ROI-driven Meta Ads campaigns for lead generation."
   }
+];
+
+const CAPABILITIES = [
+  "SEO, AEO & GEO Strategy",
+  "Technical Site Audits",
+  "GSC & GA4 Analytics",
+  "Keyword & Gap Analysis",
+  "Link Building & Outreach",
+  "Meta & Google Ads",
+  "WordPress & CMS",
+  "Performance Reporting"
 ];
 
 const EDUCATION = [
@@ -67,151 +87,259 @@ const EDUCATION = [
   { id: 2, degree: "B.Com Finance", institution: "Nirmala College of Arts and Science" }
 ];
 
-const LANGUAGES = ["English", "Malayalam", "Tamil", "Hindi"];
-
 const TOOLKIT = [
-  { category: "SEO Tools", tools: "SEMrush, Ahrefs, Moz, Screaming Frog, GSC, GA4, Microsoft Clarity" },
-  { category: "Paid Media", tools: "Meta Ads Manager, Google Ads, LinkedIn Campaign Manager" },
-  { category: "Operations", tools: "ZOHO CRM, ClickFunnels, GetResponse, My Pipeline" },
-  { category: "Platforms", tools: "WordPress, Shopify, Payload CMS, Wix" }
+  { category: "SEO & Analytics", tools: "SEMrush, Ahrefs, Moz, Screaming Frog, GSC, GA4, Microsoft Clarity" },
+  { category: "Paid Advertising", tools: "Meta Ads Manager, Google Ads, LinkedIn Campaign Manager" },
+  { category: "CMS Platforms", tools: "WordPress, Wix, Shopify, Payload CMS" }
 ];
 
 const WORKS = [
   {
     id: 1,
-    title: "B2B SaaS Lead Generation",
-    category: "Meta Ads",
-    stats: "115 Leads | ₹58.27 CPL",
-    image: "image_dc390c.png",
-    overview: "Focused on getting quality demo requests for software. I achieved 115 leads at an average cost of ₹58.27 by testing specific interest targeting.",
-    tools: ["Meta Ads", "Zoho CRM"],
-    neonAccent: "blue",
-    mockupId: "meta1"
+    title: "B2B SaaS Technical SEO",
+    category: "Search Engine Optimization",
+    stats: "15.8K Clicks | 816K Impressions | 1.9% CTR",
+    mockupId: "gsc",
+    image: imgGsc1,
+    overview: "Monitored and optimized technical SEO architecture to deliver consistent organic traffic growth over a 12-month period.",
+    execution: "Conducted technical SEO assessments covering Core Web Vitals, Schema Markup, and crawlability. Utilized Google Search Console to track performance and identify indexing anomalies.",
+    tools: ["Google Search Console", "Screaming Frog", "GA4", "WordPress"],
+    neonAccent: "cyan"
   },
   {
     id: 2,
-    title: "EdTech Acquisition",
-    category: "Meta Ads",
-    stats: "2,050 Leads | ₹45.54 CPL",
-    image: "image_dc3934.png",
-    overview: "High-volume lead generation for nursing and educational courses. Scaled the budget to reach over 2,000 leads while maintaining a stable cost.",
-    tools: ["Meta Ads", "A/B Testing"],
-    neonAccent: "emerald",
-    mockupId: "meta2"
+    title: "B2B Tech AEO & Rankings",
+    category: "AI Search & Content Strategy",
+    stats: "Top 3 SERP | 97.8% Organic | AI Overview Visibility",
+    mockupId: "serp",
+    image: imgSerp,
+    overview: "Tracked and optimized search engine results page (SERP) visibility across global regions.",
+    execution: "Monitored keyword positions and SERP features, maintaining 97.8% organic visibility while implementing E-E-A-T frameworks for AI Overview placements.",
+    tools: ["SEMrush", "Ahrefs", "Moz", "Rank Tracker"],
+    neonAccent: "purple"
   },
   {
     id: 3,
-    title: "Niche Service Search",
-    category: "Google Ads",
-    stats: "400 Clicks | ₹18.06 CPC",
-    image: "image_e3f31b.png",
-    overview: "A targeted Google Search sprint. By using exact-match keywords and bid caps, I kept the CPC at ₹18.06 with 400 highly relevant clicks.",
-    tools: ["Google Ads", "Conversion Tracking"],
-    neonAccent: "fuchsia",
-    mockupId: "gad_perf"
+    title: "B2B Software Meta Ads",
+    category: "B2B Paid Advertising",
+    stats: "115 Leads | 542 Clicks | ₹6.70K Spend",
+    mockupId: "meta1",
+    image: imgMeta1,
+    overview: "Managed focused Meta Ads campaigns for B2B software, driving high-intent leads while maintaining efficient ad spend.",
+    execution: "Generated 115 leads through targeted ad sets. Carefully monitored cost per result to achieve a highly optimized CPL.",
+    tools: ["Meta Ads Manager", "ZOHO CRM", "A/B Testing"],
+    neonAccent: "blue"
   },
   {
     id: 4,
-    title: "Organic Traffic Growth",
-    category: "Technical SEO",
-    stats: "15.8K Clicks | 816K Impressions",
-    image: "Screenshot 2026-04-14 212248.png",
-    overview: "Cleaned up technical errors and indexing issues on a large site. This led to a 44% YoY increase in organic traffic from Google.",
-    tools: ["GSC", "Screaming Frog"],
-    neonAccent: "cyan",
-    mockupId: "gsc"
+    title: "B2C EdTech Lead Generation",
+    category: "B2C Performance Marketing",
+    stats: "2,050 Leads | ₹45.54 Avg CPL | 100K+ Clicks",
+    mockupId: "meta2",
+    image: imgMeta2,
+    overview: "Executed high-volume ROI-driven lead generation campaigns focused on minimizing Cost Per Lead (CPL).",
+    execution: "Optimized ad sets to generate over 2,000 qualified leads. Conducted continuous audience refinement and competitor benchmarking.",
+    tools: ["Meta Ads Manager", "GA4", "Lead Forms"],
+    neonAccent: "emerald"
+  },
+  {
+    id: 5,
+    title: "B2B Enterprise Google Ads",
+    category: "B2B Google Ads Management",
+    stats: "1,893 Conv. | ₹2.15L Spend | 167K Impr.",
+    mockupId: "gad1",
+    image: imgGad1,
+    overview: "Managed high-budget B2B Google Ads search campaigns focused on commercial keyword targeting.",
+    execution: "Strategically allocated budget over one month, generating 1,893 conversions from 17K clicks.",
+    tools: ["Google Ads", "Keyword Planner", "GA4"],
+    neonAccent: "blue"
+  },
+  {
+    id: 6,
+    title: "B2B SaaS Search Scaling",
+    category: "B2B Google Ads Strategy",
+    stats: "109 Conv. | ₹183K Spend | ₹1.67K CPA",
+    mockupId: "gad3",
+    image: imgGad3,
+    overview: "Optimized mid-tier B2B Google Ads accounts by continuously monitoring search terms to stabilize CPA.",
+    execution: "Maintained a controlled Cost/Conv across a ₹183K budget through negative keyword pruning.",
+    tools: ["Google Ads", "CPA Bidding", "Search Terms"],
+    neonAccent: "cyan"
+  },
+  {
+    id: 7,
+    title: "B2C D2C Acquisition",
+    category: "B2C Google Ads Optimization",
+    stats: "89 Conv. | 50.1K Impr. | ₹1.17L Spend",
+    mockupId: "gad2",
+    image: imgGad2,
+    overview: "Structured targeted B2C Google Search campaigns designed to capture active user intent.",
+    execution: "Generated 89 direct conversions within a ₹1.17L budget through precise match typing and ad extensions.",
+    tools: ["Google Ads", "Conversion Tracking", "GA4"],
+    neonAccent: "emerald"
+  },
+  {
+    id: 8,
+    title: "B2C Niche Targeted Search",
+    category: "Google Ads Strategy",
+    stats: "400 Clicks | 11.2K Impr. | ₹18.06 CPC",
+    mockupId: "gad5",
+    image: imgGad5,
+    overview: "Optimized targeted search campaigns to drive high-intent traffic while rigorously controlling CPC.",
+    execution: "Maintained a low Average CPC of ₹18.06 through strict bid caps and precise long-tail keyword targeting.",
+    tools: ["Google Ads", "Bid Strategies", "GA4"],
+    neonAccent: "fuchsia"
   }
 ];
 
-// --- EXACT UI REPLICAS BASED ON YOUR SCREENSHOTS ---
+// --- SHADCN-STYLE UI COMPONENTS ---
 
-const MetaReplica1 = () => (
-  <div className="w-full h-full bg-[#0d0d0d] text-zinc-400 font-sans text-[8px] flex flex-col p-3">
-    <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-2">
-      <span className="font-bold flex items-center gap-1.5 text-zinc-100">
-        <div className="w-4 h-4 bg-[#0866FF] rounded-md flex items-center justify-center font-black text-white text-[10px]">f</div> 
-        Meta Ads Performance
-      </span>
-    </div>
-    <div className="space-y-1">
-      <div className="flex justify-between font-bold text-zinc-500 uppercase tracking-tighter border-b border-zinc-800/50 pb-1">
-        <span>Campaign</span>
-        <span>Results</span>
-        <span>Cost</span>
-      </div>
-      <div className="flex justify-between items-center py-2 border-b border-zinc-800/30">
-        <span className="text-zinc-200">B2B SaaS Lead Gen</span>
-        <span className="font-black text-white">115 Leads</span>
-        <span className="text-cyan-400 font-black">₹58.27</span>
-      </div>
-      <div className="mt-4 p-2 bg-zinc-900/50 rounded flex justify-between items-center">
-        <span className="text-zinc-500 uppercase">Total Spent</span>
-        <span className="text-white font-bold text-[10px]">₹6,701.00</span>
-      </div>
-    </div>
-  </div>
-);
+const Badge = ({ children, variant = "default", className = "" }) => {
+  const base = "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-300 focus:ring-offset-2";
+  const variants = {
+    default: "border-transparent bg-zinc-50 text-zinc-900 hover:bg-zinc-50/80",
+    secondary: "border-transparent bg-zinc-800 text-zinc-50 hover:bg-zinc-800/80",
+    outline: "text-zinc-50 border-zinc-800",
+    neonCyan: "border-cyan-500/50 bg-cyan-500/10 text-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.2)]",
+    neonFuchsia: "border-fuchsia-500/50 bg-fuchsia-500/10 text-fuchsia-400 shadow-[0_0_10px_rgba(217,70,239,0.2)]",
+    neonEmerald: "border-emerald-500/50 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.2)]",
+  };
+  const selectedVariant = variants[variant] || variants.default;
+  return <div className={`${base} ${selectedVariant} ${className}`}>{children}</div>;
+};
 
-const MetaReplica2 = () => (
-  <div className="w-full h-full bg-[#0d0d0d] text-zinc-400 font-sans text-[8px] flex flex-col p-3">
-    <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-2">
-      <span className="font-bold flex items-center gap-1.5 text-zinc-100 uppercase tracking-widest text-[7px]">Facebook Ad Sets</span>
+const Card = ({ children, className = "", neonHover = false, onClick }) => {
+  const hoverClass = neonHover 
+    ? "hover:border-zinc-600 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300" 
+    : "hover:border-zinc-700 transition-colors";
+  
+  return (
+    <div className={`rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm text-zinc-50 shadow-sm ${hoverClass} ${className}`} onClick={onClick}>
+      {children}
     </div>
-    <div className="grid grid-cols-3 gap-2 mb-4">
-      <div className="bg-zinc-900 p-2 rounded flex flex-col items-center">
-        <span className="text-zinc-500">Leads</span>
-        <span className="text-white font-black text-[10px]">2,050</span>
-      </div>
-      <div className="bg-zinc-900 p-2 rounded flex flex-col items-center">
-        <span className="text-zinc-500">Amount</span>
-        <span className="text-white font-black text-[10px]">₹93.3K</span>
-      </div>
-      <div className="bg-emerald-500/10 border border-emerald-500/20 p-2 rounded flex flex-col items-center">
-        <span className="text-emerald-500">Avg. CPL</span>
-        <span className="text-emerald-400 font-black text-[10px]">₹45.54</span>
-      </div>
-    </div>
-    <div className="flex-1 bg-zinc-900/30 rounded border border-zinc-800 overflow-hidden flex items-end gap-1 p-2">
-       <div className="flex-1 bg-emerald-500/50 h-[80%] rounded-t-sm" />
-       <div className="flex-1 bg-emerald-500 h-[60%] rounded-t-sm" />
-       <div className="flex-1 bg-emerald-500/30 h-[95%] rounded-t-sm" />
-       <div className="flex-1 bg-zinc-800 h-[40%] rounded-t-sm" />
-    </div>
-  </div>
-);
+  );
+}
 
-const GoogleAdsReplica = () => (
-  <div className="w-full h-full bg-[#0d0d0d] text-zinc-400 font-sans text-[8px] flex flex-col p-3">
-    <div className="flex items-center gap-1.5 mb-5 border-b border-zinc-800 pb-2">
-      <div className="w-2.5 h-2.5 bg-[#4285f4] rounded-sm"/> <span className="font-bold text-zinc-100">Google Ads Report</span>
-    </div>
-    <div className="grid grid-cols-2 gap-2 mb-4">
-      <div className="p-2 border border-zinc-800 rounded bg-zinc-900/40">
-        <span className="text-zinc-500 uppercase block mb-1">Clicks</span>
-        <span className="text-sm font-black text-white">400</span>
-      </div>
-      <div className="p-2 border border-zinc-800 rounded bg-zinc-900/40">
-        <span className="text-zinc-500 uppercase block mb-1">Cost</span>
-        <span className="text-sm font-black text-emerald-400">₹7,230</span>
-      </div>
-    </div>
-    <div className="p-2 bg-fuchsia-500/10 border border-fuchsia-500/30 rounded flex justify-between items-center">
-      <span className="text-fuchsia-400 font-bold">Avg. CPC</span>
-      <span className="text-fuchsia-400 font-black text-base">₹18.06</span>
-    </div>
-  </div>
-);
+const Button = ({ children, variant = "default", className = "", ...props }) => {
+  const base = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 disabled:pointer-events-none disabled:opacity-50 cursor-pointer";
+  const variants = {
+    default: "bg-zinc-50 text-zinc-900 hover:bg-zinc-50/90 h-10 px-4 py-2",
+    outline: "border border-zinc-800 bg-transparent hover:bg-zinc-800 hover:text-zinc-50 text-zinc-300 h-10 px-4 py-2",
+    ghost: "hover:bg-zinc-800 hover:text-zinc-50 text-zinc-400 h-10 px-4 py-2",
+    neon: "border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] h-10 px-4 py-2 transition-all duration-300"
+  };
+  return <button className={`${base} ${variants[variant]} ${className}`} {...props}>{children}</button>;
+};
 
-const GSCReplica = () => (
-  <div className="w-full h-full bg-[#0d0d0d] text-zinc-300 font-sans text-[8px] flex flex-col p-4">
-    <div className="flex justify-between items-center mb-5 text-zinc-400 font-bold uppercase tracking-widest">Search Performance</div>
-    <div className="flex gap-2 h-12 mb-4">
-      <div className="flex-1 bg-zinc-900 border-t-2 border-[#4285f4] p-1.5"><span>Clicks</span><br/><span className="text-xs font-black">15.8K</span></div>
-      <div className="flex-1 bg-zinc-900 border-t-2 border-[#8e24aa] p-1.5"><span>Impr.</span><br/><span className="text-xs font-black">816K</span></div>
+// --- DASHBOARD REPLICA COMPONENTS ---
+
+const GSCMockup = () => (
+  <div className="w-full h-full bg-[#0a0a0a] text-zinc-300 p-4 font-sans text-xs flex flex-col select-none relative overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#4285f4] to-transparent opacity-50"></div>
+    <div className="flex justify-between items-center mb-4 relative z-10">
+      <span className="text-sm font-semibold text-zinc-100 flex items-center gap-2"><BarChart3 size={16} className="text-[#4285f4] drop-shadow-[0_0_5px_rgba(66,133,244,0.5)]" /> Search results</span>
+      <span className="text-[10px] bg-zinc-900/80 px-2 py-1 rounded border border-zinc-800 text-zinc-400">Last 12 months ▼</span>
     </div>
-    <div className="flex-1 bg-zinc-900/50 rounded-lg relative overflow-hidden border border-zinc-800">
+    <div className="grid grid-cols-4 gap-2 mb-4 relative z-10">
+      <div className="border border-zinc-800 border-t-2 border-t-[#4285f4] p-3 rounded bg-zinc-900/50">
+        <span className="text-zinc-500 block">Clicks</span><span className="text-lg font-bold text-zinc-100">15.8K</span>
+      </div>
+      <div className="border border-zinc-800 border-t-2 border-t-[#8e24aa] p-3 rounded bg-zinc-900/50">
+        <span className="text-zinc-500 block">Impr.</span><span className="text-lg font-bold text-zinc-100">816K</span>
+      </div>
+      <div className="border border-zinc-800 border-t-2 border-t-[#0f9d58] p-3 rounded bg-zinc-900/50 hidden sm:block">
+        <span className="text-zinc-500 block">CTR</span><span className="text-lg font-bold text-zinc-100">1.9%</span>
+      </div>
+      <div className="border border-zinc-800 border-t-2 border-t-[#e65100] p-3 rounded bg-zinc-900/50">
+        <span className="text-zinc-500 block">Pos.</span><span className="text-lg font-bold text-zinc-100">45.6</span>
+      </div>
+    </div>
+    <div className="flex-1 relative bg-zinc-900/30 rounded border border-zinc-800 overflow-hidden z-10">
       <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-        <path d="M0,80 L10,60 L20,70 L30,40 L40,75 L50,30 L60,55 L70,20 L80,45 L90,10 L100,25" fill="none" stroke="#4285f4" strokeWidth="2" vectorEffect="non-scaling-stroke"/>
+        <path d="M0,90 Q10,70 20,80 T40,60 T60,50 T80,30 T100,40 L100,100 L0,100 Z" fill="#4285f4" fillOpacity="0.1" />
+        <path d="M0,90 Q10,70 20,80 T40,60 T60,50 T80,30 T100,40" fill="none" stroke="#4285f4" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+      </svg>
+    </div>
+  </div>
+);
+
+const SERPMockup = () => (
+  <div className="w-full h-full bg-[#0a0a0a] text-zinc-300 p-4 font-sans flex gap-4 select-none relative overflow-hidden">
+    <div className="w-1/3 flex flex-col gap-4 relative z-10">
+      <div className="bg-zinc-900/60 p-3 border border-zinc-800 rounded-md">
+        <h4 className="font-semibold text-zinc-100 mb-2 text-xs flex items-center gap-1.5"><Target size={12} className="text-cyan-400" /> Geography</h4>
+        <div className="text-[10px] space-y-1.5">
+          <div className="flex justify-between items-center bg-cyan-950/30 border border-cyan-900/50 text-cyan-100 p-1 rounded"><span>Worldwide</span><span>20</span></div>
+          <div className="flex justify-between items-center px-1"><span>India</span><span>20</span></div>
+          <div className="flex justify-between items-center px-1"><span>USA</span><span>14</span></div>
+        </div>
+      </div>
+    </div>
+    <div className="w-2/3 bg-zinc-900/60 p-4 border border-zinc-800 rounded-md flex flex-col relative z-10">
+      <div className="flex justify-between items-center mb-2">
+        <h4 className="font-semibold text-zinc-100 text-xs flex items-center gap-1.5"><LayoutDashboard size={12} className="text-zinc-400"/> Traffic</h4>
+        <span className="text-[10px] text-emerald-400 font-semibold">+14.2%</span>
+      </div>
+      <div className="flex-1 relative bg-zinc-950 rounded border border-zinc-800 overflow-hidden">
+        <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+          <path d="M0,70 Q25,40 50,60 T100,20 L100,100 L0,100 Z" fill="#22d3ee" fillOpacity="0.1" />
+          <path d="M0,70 Q25,40 50,60 T100,20" fill="none" stroke="#22d3ee" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        </svg>
+      </div>
+    </div>
+  </div>
+);
+
+const MetaAdsMockup = ({ title, results, spent, campaigns }) => (
+  <div className="w-full h-full bg-[#0a0a0a] text-zinc-300 p-4 font-sans flex flex-col select-none relative overflow-hidden">
+    <div className="bg-zinc-900/60 flex-1 border border-zinc-800 rounded-md overflow-hidden flex flex-col shadow-2xl relative z-10">
+      <div className="border-b border-zinc-800 p-2.5 px-3 flex justify-between items-center bg-zinc-950/80">
+        <div className="flex items-center gap-2">
+          <div className="w-5 h-5 bg-[#0866FF] text-white rounded flex items-center justify-center font-bold text-xs">f</div>
+          <span className="font-semibold text-xs text-zinc-100">{title}</span>
+        </div>
+      </div>
+      <div className="flex-1 text-[10px] p-2 space-y-2">
+        {campaigns.map((camp, i) => (
+          <div key={i} className="flex border-b border-zinc-800/50 py-1 items-center">
+            <div className="w-2/5 truncate font-medium text-blue-400">{camp.name}</div>
+            <div className="w-1/5 text-right text-zinc-100">{camp.results}</div>
+            <div className="w-2/5 text-right text-emerald-400">{camp.spent}</div>
+          </div>
+        ))}
+      </div>
+      <div className="bg-zinc-950/80 p-2 border-t border-zinc-800 flex justify-between text-[10px]">
+        <div className="text-zinc-500">Totals:</div>
+        <div className="text-zinc-100 font-bold">{results} Results</div>
+        <div className="text-emerald-400 font-bold">{spent}</div>
+      </div>
+    </div>
+  </div>
+);
+
+const GoogleAdsMockup = ({ title, clicks, conv, cost }) => (
+  <div className="w-full h-full bg-[#0a0a0a] text-zinc-300 p-4 font-sans flex flex-col select-none relative overflow-hidden">
+    <div className="flex justify-between items-center mb-3 pb-2 border-b border-zinc-800">
+      <span className="text-xs text-zinc-100 font-semibold">{title}</span>
+    </div>
+    <div className="grid grid-cols-3 gap-2 mb-3">
+      <div className="bg-zinc-900/50 border border-zinc-800 rounded p-2 border-t-[#4285f4]">
+        <span className="text-[9px] text-zinc-500 block">Clicks</span>
+        <span className="text-xs font-bold">{clicks}</span>
+      </div>
+      <div className="bg-zinc-900/50 border border-zinc-800 rounded p-2 border-t-[#fbbc04]">
+        <span className="text-[9px] text-zinc-500 block">Conv.</span>
+        <span className="text-xs font-bold">{conv}</span>
+      </div>
+      <div className="bg-zinc-900/50 border border-zinc-800 rounded p-2 border-t-[#34a853]">
+        <span className="text-[9px] text-zinc-500 block">Cost</span>
+        <span className="text-xs font-bold text-emerald-400">{cost}</span>
+      </div>
+    </div>
+    <div className="flex-1 bg-zinc-950 rounded border border-zinc-800 overflow-hidden relative">
+      <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <path d="M0,80 L20,40 L40,70 L60,30 L80,50 L100,10 L100,100 L0,100 Z" fill="#4285f4" fillOpacity="0.1" />
+        <path d="M0,80 L20,40 L40,70 L60,30 L80,50 L100,10" fill="none" stroke="#4285f4" strokeWidth="2" vectorEffect="non-scaling-stroke" />
       </svg>
     </div>
   </div>
@@ -219,320 +347,308 @@ const GSCReplica = () => (
 
 const MockupRenderer = ({ id }) => {
   switch(id) {
-    case "gsc": return <GSCReplica />;
-    case "meta1": return <MetaReplica1 />;
-    case "meta2": return <MetaReplica2 />;
-    case "gad_perf": return <GoogleAdsReplica />;
-    default: return <GSCReplica />;
+    case "gsc": return <GSCMockup />;
+    case "serp": return <SERPMockup />;
+    case "meta1": return <MetaAdsMockup title="Software Demo" results="115" spent="₹6.7K" campaigns={[{name: "ERP Form", results: "64", spent: "₹3.2K"}, {name: "Trial", results: "38", spent: "₹2.1K"}]} />;
+    case "meta2": return <MetaAdsMockup title="EdTech Growth" results="2,050" spent="₹93.3K" campaigns={[{name: "Data Sci", results: "850", spent: "₹38K"}, {name: "Full Stack", results: "720", spent: "₹32K"}]} />;
+    case "gad1": return <GoogleAdsMockup title="Enterprise Search" clicks="17K" conv="1,893" cost="₹2.15L" />;
+    case "gad3": return <GoogleAdsMockup title="SaaS Scaling" clicks="5.1K" conv="109" cost="₹1.83L" />;
+    case "gad2": return <GoogleAdsMockup title="D2C Acq" clicks="2.8K" conv="89" cost="₹1.17L" />;
+    case "gad5": return <GoogleAdsMockup title="Niche Search" clicks="400" conv="₹18 CPC" cost="₹7.2K" />;
+    default: return <GSCMockup />;
   }
 };
 
-// --- CORE UI ---
-
-const Badge = ({ children, variant = "default", className = "" }) => {
-  const variants = {
-    outline: "border-zinc-800 text-zinc-500 bg-zinc-900/40",
-    neonCyan: "border-cyan-500/20 bg-cyan-500/5 text-cyan-400",
-    secondary: "bg-zinc-800 text-zinc-400 border-transparent font-bold uppercase tracking-widest text-[7px]"
-  };
-  return <div className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[8px] md:text-[9px] ${variants[variant] || ""} ${className}`}>{children}</div>;
-};
-
-const Card = ({ children, className = "", onClick }) => (
-  <div className={`rounded-xl border border-zinc-900 bg-[#080808] text-zinc-50 transition-all duration-300 hover:border-zinc-700 ${className}`} onClick={onClick}>
-    {children}
-  </div>
-);
-
+// --- SCROLL REVEAL WRAPPER ---
 const Reveal = ({ children, delay = 0 }) => {
-  const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true); }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
-  return <div ref={ref} className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0 filter-none' : 'opacity-0 translate-y-6 blur-[3px]'}`} style={{ transitionDelay: `${delay}ms` }}>{children}</div>;
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// --- TAILWIND DYNAMIC CLASS FIXES ---
+const accentBorder = {
+  cyan: "border-cyan-500/20 hover:border-cyan-500/50",
+  purple: "border-purple-500/20 hover:border-purple-500/50",
+  blue: "border-blue-500/20 hover:border-blue-500/50",
+  emerald: "border-emerald-500/20 hover:border-emerald-500/50",
+  fuchsia: "border-fuchsia-500/20 hover:border-fuchsia-500/50",
+};
+
+const modalBorder = {
+  cyan: "border-cyan-500/30",
+  purple: "border-purple-500/30",
+  blue: "border-blue-500/30",
+  emerald: "border-emerald-500/30",
+  fuchsia: "border-fuchsia-500/30",
+};
+
+const textAccent = {
+  cyan: "text-cyan-400",
+  purple: "text-purple-400",
+  blue: "text-blue-400",
+  emerald: "text-emerald-400",
+  fuchsia: "text-fuchsia-400",
+};
+
+const statsAccent = {
+  cyan: "border-cyan-500/20 bg-cyan-500/10",
+  purple: "border-purple-500/20 bg-purple-500/10",
+  blue: "border-blue-500/20 bg-blue-500/10",
+  emerald: "border-emerald-500/20 bg-emerald-500/10",
+  fuchsia: "border-fuchsia-500/20 bg-fuchsia-500/10",
 };
 
 export default function App() {
+  const [activeSection, setActiveSection] = useState('home');
   const [activeWork, setActiveWork] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setMobileMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-200 font-sans selection:bg-cyan-500/30 overflow-x-hidden">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; }
-      `}</style>
-
-      {/* Navbar */}
-      <header className="fixed top-0 left-0 w-full z-40 bg-black/60 backdrop-blur-xl border-b border-zinc-900 h-12 flex items-center px-6 md:px-12">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-          <div className="text-xs font-bold tracking-tight text-white flex items-center gap-1.5">
-            <div className="w-5 h-5 bg-cyan-500 text-black rounded-md flex items-center justify-center font-black text-[10px]">S</div>
-            SOURAV KR
+    <div className="min-h-screen bg-[#050505] text-zinc-50 font-sans relative selection:bg-cyan-500/30 selection:text-cyan-100">
+      
+      {/* Navigation */}
+      <header className="fixed top-0 left-0 w-full z-40 bg-[#050505]/70 backdrop-blur-xl border-b border-zinc-800/50">
+        <div className="px-6 h-16 flex justify-between items-center max-w-7xl mx-auto">
+          <div onClick={() => scrollTo('home')} className="text-lg font-bold tracking-tight cursor-pointer flex items-center gap-2">
+            <div className="w-6 h-6 bg-cyan-500 text-black rounded flex items-center justify-center text-xs font-black">S</div>
+            <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">SOURAV</span>
           </div>
-          <div className="hidden md:flex items-center gap-6 text-[8px] font-black text-zinc-500 uppercase tracking-[0.2em]">
-            {['Experience', 'Snapshot', 'Works'].map((item) => (
-              <button key={item} onClick={() => scrollTo(item.toLowerCase())} className="hover:text-cyan-400 transition-colors uppercase tracking-widest">{item}</button>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+            {['Experience', 'Capabilities', 'Works'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="transition-all hover:text-zinc-50"
+              >
+                {item}
+              </button>
             ))}
+            <Button variant="neon" className="h-8 px-3" onClick={() => window.open(PERSONAL_DETAILS.linkedin, '_blank')}>
+              Connect
+            </Button>
           </div>
+          <Button variant="ghost" className="md:hidden px-2" onClick={() => setMobileMenuOpen(true)}>
+            <Menu size={20} />
+          </Button>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 pt-24 pb-20 relative">
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-[#050505] flex flex-col pt-20 px-6">
+          <button onClick={() => setMobileMenuOpen(false)} className="absolute top-4 right-4 p-2 text-zinc-400"><X size={24} /></button>
+          {['Home', 'Experience', 'Capabilities', 'Works'].map((item) => (
+            <button
+              key={item}
+              onClick={() => scrollTo(item.toLowerCase())}
+              className="text-left py-6 text-2xl font-bold border-b border-zinc-800"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <main className="px-6 max-w-5xl mx-auto pt-16">
         
         {/* HERO */}
-        <section id="home" className="mb-20">
+        <section id="home" className="min-h-[80vh] flex flex-col justify-center py-20 relative">
+          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
           <Reveal>
-            <Badge variant="neonCyan" className="mb-4 py-0.5 px-2 uppercase tracking-[0.1em] font-bold border-cyan-500/20">
-              Performance Analyst
-            </Badge>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight uppercase">
-              GROWING TRAFFIC <br /> & <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">GENERATING LEADS.</span>
+            <Badge variant="neonCyan" className="mb-6"><Sparkles size={12} className="mr-1.5"/> Performance Marketing Expert</Badge>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+              Scaling growth <br /> through <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">strategic SEO.</span>
             </h1>
-            <p className="text-sm md:text-base text-zinc-400 max-w-lg leading-relaxed font-light">
+            <p className="text-lg md:text-xl max-w-2xl text-zinc-400 mb-10 leading-relaxed font-light">
               {PERSONAL_DETAILS.tagline}
             </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <Button variant="neon" className="h-12 px-8" onClick={() => scrollTo('works')}>Explore Projects</Button>
+              <Button variant="outline" className="h-12 px-6" onClick={() => window.open(PERSONAL_DETAILS.linkedin, '_blank')}>
+                <Linkedin size={18} className="mr-2" /> LinkedIn
+              </Button>
+            </div>
           </Reveal>
         </section>
 
         {/* EXPERIENCE */}
-        <section id="experience" className="py-12 border-t border-zinc-900">
-           <Reveal><h2 className="text-[8px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-8">Work Experience</h2></Reveal>
-           <div className="space-y-3">
-              {EXPERIENCES.map((exp, i) => (
-                <Reveal key={i} delay={i*50}>
-                   <Card className="p-5 md:p-8 group hover:bg-zinc-900/10 backdrop-blur-md relative overflow-hidden flex flex-col md:flex-row gap-6">
-                      <div className="absolute top-0 left-0 w-[1.5px] h-full bg-zinc-800 group-hover:bg-cyan-500 transition-all duration-500" />
-                      <div className="md:w-1/3">
-                         <h3 className="text-base font-bold text-zinc-100 group-hover:text-white uppercase tracking-tight">{exp.company}</h3>
-                         <p className="text-cyan-400 font-semibold text-[9px] mt-0.5 uppercase tracking-wider">{exp.role}</p>
-                         <span className="text-zinc-600 text-[7px] font-bold uppercase tracking-[0.1em] mt-3 block">{exp.period}</span>
-                      </div>
-                      <div className="md:w-2/3 border-l border-zinc-900 md:pl-6 flex items-center">
-                         <p className="text-zinc-400 text-[12px] leading-relaxed font-light">{exp.description}</p>
-                      </div>
-                   </Card>
-                </Reveal>
+        <section id="experience" className="py-20 border-t border-zinc-800/50">
+          <Reveal>
+            <h2 className="text-3xl font-bold mb-12">Professional Experience</h2>
+            <div className="flex flex-col gap-4">
+              {EXPERIENCES.map((exp) => (
+                <Card key={exp.id} neonHover className="p-6 md:p-8 flex flex-col md:flex-row gap-6 group">
+                  <div className="md:w-1/3">
+                    <h3 className="font-bold text-zinc-100">{exp.company}</h3>
+                    <p className="text-sm text-cyan-400/80 font-mono mt-1">{exp.period}</p>
+                  </div>
+                  <div className="md:w-2/3">
+                    <h4 className="font-semibold text-zinc-300 group-hover:text-white transition-colors">{exp.role}</h4>
+                    <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{exp.description}</p>
+                  </div>
+                </Card>
               ))}
-           </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* CAPABILITIES */}
+        <section id="capabilities" className="py-20 border-t border-zinc-800/50">
+          <Reveal>
+            <h2 className="text-3xl font-bold mb-12">Toolkit & Capabilities</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex flex-wrap gap-2 content-start">
+                {CAPABILITIES.map((skill, i) => (
+                  <Badge key={i} variant="outline" className="px-4 py-2 text-sm">{skill}</Badge>
+                ))}
+              </div>
+              <div className="flex flex-col gap-4">
+                {TOOLKIT.map((item, i) => (
+                  <div key={i} className="p-4 rounded-lg bg-zinc-900/50 border border-zinc-800">
+                    <h4 className="text-zinc-100 font-bold text-sm mb-1">{item.category}</h4>
+                    <p className="text-zinc-500 text-xs">{item.tools}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </section>
 
         {/* WORKS */}
-        <section id="works" className="py-12 border-t border-zinc-900">
-          <Reveal><h2 className="text-xl md:text-3xl font-black text-zinc-800 tracking-tighter mb-10 uppercase text-center">Campaign Results</h2></Reveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {WORKS.map((work, index) => {
-              const accent = {
-                  cyan: "hover:border-cyan-500/30",
-                  purple: "hover:border-purple-500/30",
-                  blue: "hover:border-blue-500/30",
-                  emerald: "hover:border-emerald-500/30",
-                  fuchsia: "hover:border-fuchsia-500/30"
-              };
-              return (
-              <Reveal key={work.id} delay={index * 100}>
-                <Card className={`group cursor-pointer overflow-hidden border-zinc-900 bg-[#0a0a0a] ${accent[work.neonAccent] || accent.cyan}`} onClick={() => { console.log('Clicked work:', work.title); setActiveWork(work); }}>
-                  <div className="aspect-[16/10] bg-zinc-950 border-b border-zinc-900 p-0 relative overflow-hidden">
-                     <div className="absolute top-0 left-0 w-[200%] h-[200%] origin-top-left scale-[0.5] pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700">
-                        <MockupRenderer id={work.mockupId} />
-                     </div>
-                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <div className="bg-white text-black p-2.5 rounded-full shadow-xl"><ExternalLink size={16} strokeWidth={3} /></div>
-                     </div>
+        <section id="works" className="py-20 border-t border-zinc-800/50">
+          <Reveal>
+            <h2 className="text-3xl font-bold mb-4">Case Studies</h2>
+            <p className="text-zinc-500 mb-12">Measurable outcomes from data-driven campaigns.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {WORKS.map((work) => (
+                <Card 
+                  key={work.id} 
+                  className={`group cursor-pointer overflow-hidden transition-all duration-500 ${accentBorder[work.neonAccent] || accentBorder.cyan}`}
+                  onClick={() => setActiveWork(work)}
+                >
+                  <div className="relative aspect-video bg-black overflow-hidden flex items-center justify-center p-4">
+                    <div className="scale-75 md:scale-90 w-full h-full">
+                       <MockupRenderer id={work.mockupId} />
+                    </div>
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                      <div className="bg-white/10 p-3 rounded-full border border-white/20"><ExternalLink size={24}/></div>
+                    </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-bold text-sm text-zinc-100 group-hover:text-white uppercase tracking-tight">{work.title}</h3>
-                    <p className="text-[7px] text-zinc-500 mt-0.5 uppercase tracking-widest font-bold">{work.category}</p>
-                    <div className="mt-4 flex justify-between items-center border-t border-zinc-900 pt-4">
-                       <Badge variant="outline" className="font-mono text-[7px]">{work.stats}</Badge>
-                       <span className="text-[7px] text-zinc-600 font-bold uppercase tracking-widest group-hover:text-cyan-400 transition-colors">Explorer <ChevronRight size={8} className="inline ml-0.5"/></span>
+                    <p className={`${textAccent[work.neonAccent] || textAccent.cyan} text-[10px] font-bold tracking-widest uppercase mb-1`}>{work.category}</p>
+                    <h3 className="text-xl font-bold text-white mb-3">{work.title}</h3>
+                    <div className="text-[10px] font-mono text-zinc-400 bg-zinc-900 px-2 py-1 rounded inline-block">
+                      {work.stats}
                     </div>
                   </div>
                 </Card>
-              </Reveal>
-            )})}
-          </div>
+              ))}
+            </div>
 
-          <Reveal delay={200}>
             <div className="mt-16 flex flex-col items-center gap-4">
               <p className="text-zinc-600 text-[8px] max-w-sm font-bold uppercase tracking-[0.2em] text-center">Access full documentation on Google Drive</p>
               <a href="https://drive.google.com/drive/folders/1Pcegqpqf_r6E6KLByYl06MSZzjlMXpkG?usp=sharing" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 border border-cyan-500 bg-cyan-500/10 text-cyan-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest text-[8px] hover:bg-cyan-500 hover:text-black transition-all">
                 OPEN DRIVE <ExternalLink size={10} strokeWidth={3} />
               </a>
             </div>
+
           </Reveal>
-        </section>
-
-        {/* TOOLBOX & EDUCATION */}
-        <section id="snapshot" className="py-12 border-t border-zinc-900">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-              <div>
-                 <Reveal><h2 className="text-[8px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-6">Capabilities</h2></Reveal>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {TOOLKIT.map((t, i) => (
-                      <div key={i} className="p-4 rounded-lg bg-zinc-900/20 border border-zinc-800">
-                         <h4 className="text-[8px] font-bold text-cyan-400 uppercase tracking-widest mb-1.5">{t.category}</h4>
-                         <p className="text-zinc-400 text-[10px] font-light leading-relaxed">{t.tools}</p>
-                      </div>
-                    ))}
-                 </div>
-              </div>
-              
-              <div className="space-y-10">
-                 <div>
-                    <Reveal><h2 className="text-[8px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-6">Education</h2></Reveal>
-                    <div className="space-y-4">
-                       {EDUCATION.map((edu, i) => (
-                         <div key={i} className="border-l border-zinc-800 pl-4">
-                            <h4 className="text-zinc-100 font-bold text-[11px] uppercase">{edu.degree}</h4>
-                            <p className="text-zinc-500 text-[8px] uppercase mt-0.5 tracking-widest">{edu.institution}</p>
-                         </div>
-                       ))}
-                    </div>
-                 </div>
-                 <div>
-                    <Reveal><h2 className="text-[8px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-3">Languages</h2></Reveal>
-                    <div className="flex flex-wrap gap-2 text-[8px] text-zinc-400 font-bold">
-                       {LANGUAGES.join(" • ").toUpperCase()}
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </section>
-
-        {/* TESTIMONIALS */}
-        <section id="testimonials" className="py-20 border-t border-zinc-900 text-center">
-          <Reveal><h2 className="text-xl font-black text-zinc-800 tracking-[0.4em] mb-8 uppercase italic">Validation</h2></Reveal>
-          <Card className="p-12 border-dashed border-zinc-800 bg-transparent flex flex-col items-center justify-center">
-             <Sparkles size={32} className="text-zinc-900 mb-4 animate-pulse" />
-             <h3 className="text-xl font-black text-zinc-800 tracking-tighter uppercase italic opacity-40">COMING SOON</h3>
-          </Card>
         </section>
 
       </main>
 
-      <footer className="border-t border-zinc-900 py-12 px-6 md:px-12 bg-black mt-20 relative z-10">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-          <div className="text-center md:text-left">
-             <div className="text-xl font-black tracking-tighter flex items-center justify-center md:justify-start gap-2.5 uppercase">
-                <div className="w-6 h-6 bg-cyan-500 rounded-md" /> SOURAV KR
-             </div>
-             <p className="text-[7px] text-zinc-700 font-bold tracking-[0.2em] uppercase mt-2">Marketing performance data analytics.</p>
+      {/* FOOTER */}
+      <footer className="border-t border-zinc-800/50 py-12 px-6 bg-[#050505]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-zinc-500 text-sm">© {new Date().getFullYear()} Sourav KR • Performance Marketing</div>
+          <div className="flex gap-6 text-sm text-zinc-400">
+            <a href={`mailto:${PERSONAL_DETAILS.email}`} className="hover:text-cyan-400">{PERSONAL_DETAILS.email}</a>
+            <a href={PERSONAL_DETAILS.linkedin} target="_blank" className="hover:text-cyan-400">LinkedIn</a>
           </div>
-          <div className="flex gap-8">
-             <a href={`mailto:${PERSONAL_DETAILS.email}`} className="text-zinc-600 hover:text-white transition-colors uppercase font-bold text-[8px] tracking-[0.2em]">Email</a>
-             <a href={PERSONAL_DETAILS.linkedin} target="_blank" rel="noreferrer" className="text-zinc-600 hover:text-cyan-400 transition-colors uppercase font-bold text-[8px] tracking-[0.2em]">LinkedIn</a>
-          </div>
-          <div className="text-[7px] text-zinc-800 font-mono uppercase tracking-[0.4em]">© 2026 SOURAV KR</div>
         </div>
       </footer>
 
-      {/* CASE STUDY MODAL */}
+      {/* WORK MODAL */}
       {activeWork && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/98 backdrop-blur-xl p-4 overflow-y-auto">
-          <div className={`bg-[#080808] w-full max-w-4xl my-auto rounded-2xl border border-zinc-800 shadow-2xl relative flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-500`}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-300">
+          <div className={`bg-[#0a0a0a] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border relative p-6 md:p-10 ${modalBorder[activeWork.neonAccent] || modalBorder.cyan}`}>
+            <button 
+              onClick={() => setActiveWork(null)}
+              className="absolute top-6 right-6 p-2 bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors"
+            >
+              <X size={20} />
+            </button>
             
-            <button onClick={() => setActiveWork(null)} className="absolute top-5 right-5 z-30 p-2 bg-zinc-900 text-white rounded-full hover:bg-red-500 transition-all"><X size={16} /></button>
-            
-            <div className="p-6 md:p-12 w-full relative">
-              <div className="mb-8 border-b border-zinc-900 pb-6">
-                <p className={`${
-                  {
-                    cyan: 'text-cyan-400',
-                    blue: 'text-blue-400',
-                    emerald: 'text-emerald-400',
-                    fuchsia: 'text-fuchsia-400'
-                  }[activeWork.neonAccent] || 'text-cyan-400'
-                } text-[8px] font-bold uppercase tracking-[0.3em] mb-2`}>{activeWork.category}</p>
-                <h3 className="text-2xl md:text-4xl font-black text-white tracking-tight mb-4 uppercase">{activeWork.title}</h3>
-                <div className={`inline-flex items-center gap-4`}>
-                   <div className={`px-4 py-1 rounded-full ${
-                     {
-                       cyan: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400',
-                       blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
-                       emerald: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
-                       fuchsia: 'bg-fuchsia-500/10 border-fuchsia-500/30 text-fuchsia-400'
-                     }[activeWork.neonAccent] || 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
-                   } font-mono text-xs font-bold tracking-tight uppercase`}>
-                     {activeWork.stats}
-                   </div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col lg:flex-row gap-10">
-                <div className="flex-1 space-y-8">
-                  <div>
-                    <h4 className="text-zinc-700 text-[8px] font-bold uppercase tracking-[0.3em] mb-3 border-l-2 border-zinc-800 pl-3 italic">Project Detail</h4>
-                    <p className="text-zinc-400 text-base leading-relaxed font-light">{activeWork.overview}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-zinc-700 text-[8px] font-bold uppercase tracking-[0.3em] mb-3">Tools</h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {activeWork.tools.map((t, i) => <span key={i} className="text-[8px] font-bold border border-zinc-800 text-zinc-500 px-3 py-1 rounded-full bg-zinc-900/50 uppercase tracking-widest">{t}</span>)}
-                    </div>
-                  </div>
-                  {/* Replica Visual */}
-                  <div>
-                    <h4 className="text-zinc-700 text-[8px] font-bold uppercase tracking-[0.3em] mb-3 italic">Interactive Replica</h4>
-                    <div className="w-full h-36 bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden shadow-inner">
-                       <MockupRenderer id={activeWork.mockupId} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* VERIFICATION SIDEBAR */}
-                <div className="w-full lg:w-[280px] shrink-0">
-                  <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-900 shadow-xl relative overflow-hidden group/ssarea transition-all">
-                    <h4 className="text-zinc-600 text-[7px] font-black uppercase tracking-[0.3em] mb-6 flex justify-between items-center border-b border-zinc-900 pb-3 font-mono">
-                       SOURCE PROOF <Database size={10} className="text-zinc-800"/>
-                    </h4>
-                    <div className="rounded-xl overflow-hidden border border-zinc-800 bg-black aspect-square relative group/ss">
-                       <img 
-                         src={activeWork.image} 
-                         className="w-full h-full object-contain opacity-40 group-hover/ss:opacity-100 transition-all duration-1000"
-                         alt="Actual Campaign Result"
-                         onError={(e) => { e.target.onerror = null; e.target.src = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"; }}
-                       />
-                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/ss:opacity-100 transition-opacity bg-black/60">
-                          <button 
-                            onClick={() => window.open(activeWork.image, '_blank')}
-                            className="bg-white text-black px-4 py-2 rounded-full font-black flex items-center gap-2 text-[7px] uppercase tracking-widest shadow-xl"
-                          >
-                            <ExternalLink size={12} strokeWidth={3} /> FULL IMAGE
-                          </button>
-                       </div>
-                    </div>
-                    <div className="mt-8 flex flex-col gap-6">
-                       <div className="flex items-center gap-3">
-                          <div className="w-6 h-6 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                          </div>
-                          <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">Platform Screenshot</span>
-                       </div>
-                       <button 
-                         className="w-full h-10 bg-zinc-900 border border-zinc-800 text-zinc-100 rounded-xl font-bold uppercase text-[8px] tracking-[0.2em] hover:bg-zinc-800 transition-all"
-                         onClick={() => window.open(activeWork.image, '_blank')}
-                       >
-                         OPEN REAL FILE
-                       </button>
-                    </div>
-                  </div>
-                </div>
+            <div className="mb-8">
+              <p className={`${textAccent[activeWork.neonAccent] || textAccent.cyan} font-bold text-xs uppercase tracking-widest mb-2`}>{activeWork.category}</p>
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-6">{activeWork.title}</h3>
+              <div className={`inline-block border px-4 py-2 rounded-lg ${statsAccent[activeWork.neonAccent] || statsAccent.cyan}`}>
+                <span className="font-mono text-sm text-white font-bold">{activeWork.stats}</span>
               </div>
             </div>
 
-            <div className="p-8 border-t border-zinc-900 bg-black flex justify-end">
-               <button onClick={() => setActiveWork(null)} className="px-10 py-3 bg-zinc-50 text-black font-black uppercase text-[8px] tracking-[0.3em] hover:bg-cyan-400 transition-all rounded-full active:scale-95">COLLAPSE</button>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+              <div className="md:col-span-3 space-y-8">
+                <div>
+                  <h4 className="text-zinc-500 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Search size={14} /> Overview
+                  </h4>
+                  <p className="text-zinc-300 leading-relaxed">{activeWork.overview}</p>
+                </div>
+                <div>
+                  <h4 className="text-zinc-500 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Zap size={14} /> Execution
+                  </h4>
+                  <p className="text-zinc-300 leading-relaxed">{activeWork.execution}</p>
+                </div>
+                <div>
+                  <h4 className="text-zinc-500 font-bold text-xs uppercase tracking-widest mb-4">Toolkit</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {activeWork.tools.map((t, i) => (
+                      <span key={i} className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-xs font-mono text-zinc-400">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="md:col-span-2 space-y-6">
+                <h4 className="text-zinc-500 font-bold text-xs uppercase tracking-widest">Evidence</h4>
+                <div className="rounded-xl overflow-hidden border border-zinc-800 shadow-2xl bg-black">
+                  <img src={activeWork.image} className="w-full h-auto opacity-80" alt="Result screenshot" />
+                </div>
+                <Button onClick={() => setActiveWork(null)} className="w-full h-12">Close Details</Button>
+              </div>
             </div>
           </div>
         </div>
