@@ -33,8 +33,9 @@ const imgGad5 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib
 // --- DATA ---
 const PERSONAL_DETAILS = {
   name: "SOURAV KR",
-  role: "Digital Marketing Specialist | SEO / AEO / GEO Analyst",
-  tagline: "Results-driven Digital Marketing Specialist with 3+ years of experience across B2B and B2C industries. Proven track record of delivering measurable growth in organic traffic and lead generation.",
+  role: "Digital Marketing Specialist",
+  heroSubtitle: "SEO, paid media, and AI search — built for B2B growth.",
+  tagline: "3+ years driving measurable results across B2B and B2C — from 44% YoY organic growth to high-volume lead gen campaigns across Google, Meta, and LinkedIn. I work at the intersection of strategy and execution.",
   email: "sourus61@gmail.com",
   github: "#", 
   linkedin: "https://linkedin.com/in/sourav-rajeevan/"
@@ -43,43 +44,59 @@ const PERSONAL_DETAILS = {
 const EXPERIENCES = [
   {
     id: 1,
-    role: "SEO Analyst",
+    role: "Digital Marketing Specialist — SEO, AEO & Paid Media",
     company: "2Base Technologies",
-    period: "Sept 2024 - Apr 2026",
-    description: "Led the SEO, AEO, and GEO strategy, delivering 44% YoY organic traffic growth. Managed technical SEO assessments, content audits, and cross-functional campaigns."
+    period: "Sep 2023 – Present",
+    bullets: [
+      "Delivered 44% YoY organic traffic growth through technical SEO, content strategy, and AEO/GEO optimisation.",
+      "Built and maintained GSC + GA4 reporting pipelines, reducing audit turnaround by 40%.",
+      "Managed B2B lead gen campaigns across Google Ads and Meta, contributing to a 17% increase in inbound SEO leads.",
+      "Led AI search visibility strategy — securing AI Overview placements for targeted B2B keywords."
+    ]
   },
   {
     id: 2,
-    role: "Digital Marketing Specialist",
+    role: "Digital Marketing Specialist (Contract)",
     company: "Ad House Advertising",
-    period: "Jul 2024 - Aug 2024",
-    description: "Managed SEO, PPC, and Meta Ads campaigns. Achieved a 17% increase in social media reach through platform-specific content."
+    period: "Jul 2024 – Aug 2024",
+    bullets: [
+      "Ran SEO, PPC, and Meta Ads campaigns for agency clients.",
+      "Achieved 17% increase in social media reach through platform-specific content strategy."
+    ]
   },
   {
     id: 3,
-    role: "Senior Digital Marketing Exec.",
+    role: "Senior Digital Marketing Executive",
     company: "Conscience Business Solutions",
-    period: "Sep 2023 - Jul 2024",
-    description: "Ranked company website in the top 10 for targeted commercial keywords. Designed and developed the company WordPress website with built-in SEO architecture."
+    period: "Sep 2023 – Jul 2024",
+    bullets: [
+      "Ranked company website in the top 10 for targeted commercial keywords from a standing start.",
+      "Designed and built the company WordPress site with SEO architecture baked in from the ground up.",
+      "Managed paid search and social campaigns, growing monthly organic sessions to 1,700+."
+    ]
   },
   {
     id: 4,
     role: "Freelance SEO Consultant",
     company: "Docsmart",
-    period: "Sep 2022 - Sep 2023",
-    description: "Delivered SEO strategy, technical audits, and on-page optimization. Managed ROI-driven Meta Ads campaigns for lead generation."
+    period: "Sep 2022 – Sep 2023",
+    bullets: [
+      "Delivered full-cycle SEO engagements — technical audits, on-page optimisation, and content planning.",
+      "Ran ROI-tracked Meta Ads campaigns for lead generation, managing budget and reporting end-to-end."
+    ]
   }
 ];
 
 const CAPABILITIES = [
-  "SEO, AEO & GEO Strategy",
-  "Technical Site Audits",
-  "GSC & GA4 Analytics",
+  "Technical SEO",
+  "AEO & GEO",
+  "AI Overview Optimisation",
+  "Schema Markup",
   "Keyword & Gap Analysis",
-  "Link Building & Outreach",
-  "Meta & Google Ads",
-  "WordPress & CMS",
-  "Performance Reporting"
+  "Link Building",
+  "Content Audits",
+  "Performance Reporting",
+  "Site Migrations"
 ];
 
 const EDUCATION = [
@@ -88,105 +105,107 @@ const EDUCATION = [
 ];
 
 const TOOLKIT = [
-  { category: "SEO & Analytics", tools: "SEMrush, Ahrefs, Moz, Screaming Frog, GSC, GA4, Microsoft Clarity" },
-  { category: "Paid Advertising", tools: "Meta Ads Manager, Google Ads, LinkedIn Campaign Manager" },
-  { category: "CMS Platforms", tools: "WordPress, Wix, Shopify, Payload CMS" }
+  { category: "SEO & AI Search", tools: "Technical SEO, AEO, GEO, AI Overview optimisation, schema markup" },
+  { category: "Analytics & Reporting", tools: "GSC, GA4, Microsoft Clarity, SEMrush, Ahrefs, Screaming Frog, Moz" },
+  { category: "Paid Media", tools: "Google Ads, Meta Ads Manager, LinkedIn Campaign Manager" },
+  { category: "CMS & Platforms", tools: "WordPress, Wix, Shopify, Payload CMS" },
+  { category: "Core Skills", tools: "Keyword & gap analysis, link building, content audits, performance reporting, site migrations" }
 ];
 
 const WORKS = [
   {
     id: 1,
-    title: "B2B SaaS Technical SEO",
+    title: "B2B SaaS - Technical SEO",
     category: "Search Engine Optimization",
     stats: "15.8K Clicks | 816K Impressions | 1.9% CTR",
     mockupId: "gsc",
     image: imgGsc1,
-    overview: "Monitored and optimized technical SEO architecture to deliver consistent organic traffic growth over a 12-month period.",
-    execution: "Conducted technical SEO assessments covering Core Web Vitals, Schema Markup, and crawlability. Utilized Google Search Console to track performance and identify indexing anomalies.",
+    overview: "Scaled organic visibility for a B2B software platform.",
+    execution: "Inherited a site with structural technical issues and low search visibility. Led full audit, redirect mapping, and content restructure.",
     tools: ["Google Search Console", "Screaming Frog", "GA4", "WordPress"],
     neonAccent: "cyan"
   },
   {
     id: 2,
-    title: "B2B Tech AEO & Rankings",
+    title: "B2B Tech - AEO & AI Search",
     category: "AI Search & Content Strategy",
-    stats: "Top 3 SERP | 97.8% Organic | AI Overview Visibility",
+    stats: "Top 3 SERP | 97.8% Organic Share | AI Overview Placement",
     mockupId: "serp",
     image: imgSerp,
-    overview: "Tracked and optimized search engine results page (SERP) visibility across global regions.",
-    execution: "Monitored keyword positions and SERP features, maintaining 97.8% organic visibility while implementing E-E-A-T frameworks for AI Overview placements.",
+    overview: "Achieved top-3 SERP ranking and AI Overview visibility.",
+    execution: "Developed an AEO content strategy targeting question-based queries. Optimised for AI search surfaces alongside traditional rankings.",
     tools: ["SEMrush", "Ahrefs", "Moz", "Rank Tracker"],
     neonAccent: "purple"
   },
   {
     id: 3,
-    title: "B2B Software Meta Ads",
+    title: "B2B - Meta Ads",
     category: "B2B Paid Advertising",
-    stats: "115 Leads | 542 Clicks | ₹6.70K Spend",
+    stats: "115 Leads | 542 Clicks | ₹6.7K Spend",
     mockupId: "meta1",
     image: imgMeta1,
-    overview: "Managed focused Meta Ads campaigns for B2B software, driving high-intent leads while maintaining efficient ad spend.",
-    execution: "Generated 115 leads through targeted ad sets. Carefully monitored cost per result to achieve a highly optimized CPL.",
+    overview: "Lead generation campaign for B2B software.",
+    execution: "Built and managed a Meta Ads funnel targeting decision-makers in the SMB segment. Focused on CPL efficiency on a tight budget.",
     tools: ["Meta Ads Manager", "ZOHO CRM", "A/B Testing"],
     neonAccent: "blue"
   },
   {
     id: 4,
-    title: "B2C EdTech Lead Generation",
+    title: "B2C - EdTech Lead Generation",
     category: "B2C Performance Marketing",
     stats: "2,050 Leads | ₹45.54 Avg CPL | 100K+ Clicks",
     mockupId: "meta2",
     image: imgMeta2,
-    overview: "Executed high-volume ROI-driven lead generation campaigns focused on minimizing Cost Per Lead (CPL).",
-    execution: "Optimized ad sets to generate over 2,000 qualified leads. Conducted continuous audience refinement and competitor benchmarking.",
+    overview: "High-volume lead gen for an EdTech platform.",
+    execution: "Managed multi-channel paid campaigns at scale. Optimised for CPL with audience segmentation and creative iteration.",
     tools: ["Meta Ads Manager", "GA4", "Lead Forms"],
     neonAccent: "emerald"
   },
   {
     id: 5,
-    title: "B2B Enterprise Google Ads",
+    title: "B2B - Google Ads",
     category: "B2B Google Ads Management",
-    stats: "1,893 Conv. | ₹2.15L Spend | 167K Impr.",
+    stats: "1,893 Conversions | ₹2.15L Spend | 167K Impressions",
     mockupId: "gad1",
     image: imgGad1,
-    overview: "Managed high-budget B2B Google Ads search campaigns focused on commercial keyword targeting.",
-    execution: "Strategically allocated budget over one month, generating 1,893 conversions from 17K clicks.",
+    overview: "Enterprise Google Ads management for B2B software.",
+    execution: "Managed a high-spend Google Ads account, optimising for conversion volume while controlling CPA across multiple campaign types.",
     tools: ["Google Ads", "Keyword Planner", "GA4"],
     neonAccent: "blue"
   },
   {
     id: 6,
-    title: "B2B SaaS Search Scaling",
+    title: "B2B SaaS - Google Ads",
     category: "B2B Google Ads Strategy",
-    stats: "109 Conv. | ₹183K Spend | ₹1.67K CPA",
+    stats: "109 Conversions | ₹1.67K CPA | ₹1.83L Spend",
     mockupId: "gad3",
     image: imgGad3,
-    overview: "Optimized mid-tier B2B Google Ads accounts by continuously monitoring search terms to stabilize CPA.",
-    execution: "Maintained a controlled Cost/Conv across a ₹183K budget through negative keyword pruning.",
+    overview: "Search scaling for a B2B SaaS product.",
+    execution: "Rebuilt campaign structure and bidding strategy to improve CPA efficiency while scaling conversion volume.",
     tools: ["Google Ads", "CPA Bidding", "Search Terms"],
     neonAccent: "cyan"
   },
   {
     id: 7,
-    title: "B2C D2C Acquisition",
+    title: "B2C - D2C Google Ads",
     category: "B2C Google Ads Optimization",
-    stats: "89 Conv. | 50.1K Impr. | ₹1.17L Spend",
+    stats: "89 Conversions | 50.1K Impressions | ₹1.17L Spend",
     mockupId: "gad2",
     image: imgGad2,
-    overview: "Structured targeted B2C Google Search campaigns designed to capture active user intent.",
-    execution: "Generated 89 direct conversions within a ₹1.17L budget through precise match typing and ad extensions.",
+    overview: "Acquisition campaign for a D2C brand.",
+    execution: "Ran targeted Google Ads campaigns for a direct-to-consumer brand, focusing on acquisition efficiency at moderate spend.",
     tools: ["Google Ads", "Conversion Tracking", "GA4"],
     neonAccent: "emerald"
   },
   {
     id: 8,
-    title: "B2C Niche Targeted Search",
+    title: "B2C - Niche Search",
     category: "Google Ads Strategy",
-    stats: "400 Clicks | 11.2K Impr. | ₹18.06 CPC",
+    stats: "400 Clicks | 11.2K Impressions | ₹18.06 CPC",
     mockupId: "gad5",
     image: imgGad5,
-    overview: "Optimized targeted search campaigns to drive high-intent traffic while rigorously controlling CPC.",
-    execution: "Maintained a low Average CPC of ₹18.06 through strict bid caps and precise long-tail keyword targeting.",
+    overview: "Low-CPC niche search campaign.",
+    execution: "Built a tightly targeted search campaign for a niche B2C product, prioritising relevance and cost efficiency.",
     tools: ["Google Ads", "Bid Strategies", "GA4"],
     neonAccent: "fuchsia"
   }
@@ -445,13 +464,13 @@ export default function App() {
             <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">SOURAV</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            {['Experience', 'Capabilities', 'Works'].map((item) => (
+            {[{label: 'Experience', id: 'experience'}, {label: 'Capabilities', id: 'capabilities'}, {label: 'Work', id: 'works'}].map((item) => (
               <button
-                key={item}
-                onClick={() => scrollTo(item.toLowerCase())}
+                key={item.label}
+                onClick={() => scrollTo(item.id)}
                 className="transition-all hover:text-zinc-50"
               >
-                {item}
+                {item.label}
               </button>
             ))}
             <Button variant="neon" className="h-8 px-3" onClick={() => window.open(PERSONAL_DETAILS.linkedin, '_blank')}>
@@ -468,13 +487,13 @@ export default function App() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-[#050505] flex flex-col pt-20 px-6">
           <button onClick={() => setMobileMenuOpen(false)} className="absolute top-4 right-4 p-2 text-zinc-400"><X size={24} /></button>
-          {['Home', 'Experience', 'Capabilities', 'Works'].map((item) => (
+          {[{label: 'Home', id: 'home'}, {label: 'Experience', id: 'experience'}, {label: 'Capabilities', id: 'capabilities'}, {label: 'Work', id: 'works'}].map((item) => (
             <button
-              key={item}
-              onClick={() => scrollTo(item.toLowerCase())}
+              key={item.label}
+              onClick={() => scrollTo(item.id)}
               className="text-left py-6 text-2xl font-bold border-b border-zinc-800"
             >
-              {item}
+              {item.label}
             </button>
           ))}
         </div>
@@ -486,15 +505,15 @@ export default function App() {
         <section id="home" className="min-h-[80vh] flex flex-col justify-center py-20 relative">
           <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
           <Reveal>
-            <Badge variant="neonCyan" className="mb-6"><Sparkles size={12} className="mr-1.5"/> Performance Marketing Expert</Badge>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
-              Scaling growth <br /> through <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">strategic SEO.</span>
+            <Badge variant="neonCyan" className="mb-6"><Sparkles size={12} className="mr-1.5"/> {PERSONAL_DETAILS.role}</Badge>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4 leading-tight">
+              {PERSONAL_DETAILS.heroSubtitle.split(' — ')[0]} —<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">{PERSONAL_DETAILS.heroSubtitle.split(' — ')[1]}</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl text-zinc-400 mb-10 leading-relaxed font-light">
               {PERSONAL_DETAILS.tagline}
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <Button variant="neon" className="h-12 px-8" onClick={() => scrollTo('works')}>Explore Projects</Button>
+              <Button variant="neon" className="h-12 px-8" onClick={() => scrollTo('works')}>Explore Work</Button>
               <Button variant="outline" className="h-12 px-6" onClick={() => window.open(PERSONAL_DETAILS.linkedin, '_blank')}>
                 <Linkedin size={18} className="mr-2" /> LinkedIn
               </Button>
@@ -515,7 +534,14 @@ export default function App() {
                   </div>
                   <div className="md:w-2/3">
                     <h4 className="font-semibold text-zinc-300 group-hover:text-white transition-colors">{exp.role}</h4>
-                    <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{exp.description}</p>
+                    <ul className="mt-3 space-y-2">
+                      {exp.bullets.map((bullet, i) => (
+                        <li key={i} className="text-sm text-zinc-400 leading-relaxed flex items-start gap-2">
+                          <ChevronRight size={14} className="text-cyan-500/60 mt-0.5 shrink-0" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </Card>
               ))}
@@ -577,9 +603,9 @@ export default function App() {
             </div>
 
             <div className="mt-16 flex flex-col items-center gap-4">
-              <p className="text-zinc-600 text-[8px] max-w-sm font-bold uppercase tracking-[0.2em] text-center">Access full documentation on Google Drive</p>
-              <a href="https://drive.google.com/drive/folders/1Pcegqpqf_r6E6KLByYl06MSZzjlMXpkG?usp=sharing" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 border border-cyan-500 bg-cyan-500/10 text-cyan-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest text-[8px] hover:bg-cyan-500 hover:text-black transition-all">
-                OPEN DRIVE <ExternalLink size={10} strokeWidth={3} />
+              <p className="text-zinc-500 text-sm max-w-md text-center">Access full campaign documentation on Google Drive</p>
+              <a href="https://drive.google.com/drive/folders/1Pcegqpqf_r6E6KLByYl06MSZzjlMXpkG?usp=sharing" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 border border-cyan-500 bg-cyan-500/10 text-cyan-400 px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-cyan-500 hover:text-black transition-all">
+                OPEN DRIVE <ExternalLink size={14} strokeWidth={2.5} />
               </a>
             </div>
 
@@ -591,7 +617,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="border-t border-zinc-800/50 py-12 px-6 bg-[#050505]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-zinc-500 text-sm">© {new Date().getFullYear()} Sourav KR • Performance Marketing</div>
+          <div className="text-zinc-500 text-sm">© {new Date().getFullYear()} Sourav KR — Digital Marketing Specialist</div>
           <div className="flex gap-6 text-sm text-zinc-400">
             <a href={`mailto:${PERSONAL_DETAILS.email}`} className="hover:text-cyan-400">{PERSONAL_DETAILS.email}</a>
             <a href={PERSONAL_DETAILS.linkedin} target="_blank" className="hover:text-cyan-400">LinkedIn</a>
